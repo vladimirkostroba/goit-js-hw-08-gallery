@@ -78,11 +78,11 @@ function onPressKey(event) {
     closeModal();
   }
 
-  if (event.key === 'ArrowRight' || event.code === 'ArrowLeft') {
+  if (event.key === 'ArrowRight' || 'ArrowLeft') {
     slider(event.key);
   }
 
-  if (event.key === 'ArrowDown' || event.code === 'ArrowUp') {
+  if (event.key === 'ArrowDown' || 'ArrowUp') {
     slider(event.key);
   }
 }
