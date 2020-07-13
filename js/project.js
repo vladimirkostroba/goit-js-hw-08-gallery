@@ -81,6 +81,10 @@ function onPressKey(event) {
   if (event.key === 'ArrowRight' || event.code === 'ArrowLeft') {
     slider(event.key);
   }
+
+  if (event.key === 'ArrowDown' || event.code === 'ArrowUp') {
+    slider(event.key);
+  }
 }
 
 // переключение картинок влево/вправо
@@ -94,11 +98,11 @@ function slider(key) {
     return;
   }
 
-  if (key === 'ArrowRight') {
+  if (key === 'ArrowRight' || 'ArrowDown') {
     nextImg();
   }
 
-  if (key === 'ArrowLeft') {
+  if (key === 'ArrowLeft' || 'ArrowUp') {
     prevImg();
   }
 
