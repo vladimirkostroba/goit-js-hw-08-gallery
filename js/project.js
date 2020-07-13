@@ -5,7 +5,7 @@ const refs = {
   modal: document.querySelector('.js-lightbox'),
   img: document.querySelector('.lightbox__image'),
   button: document.querySelector('.lightbox__button'),
-  overlay: document.querySelector('.lightbox__overlay'),
+  overlay: document.querySelector('.lightbox__content'),
 };
 
 // Создание и рендер разметки по массиву данных и предоставленному шаблону.
@@ -62,10 +62,61 @@ function closeModal() {
 
 // // закрытие по клику на lightbox__overlay
 
-// window.addEventListener('click', clickOverlay);
+refs.overlay.addEventListener('click', clickOverlay);
 
-// function clickOverlay(event) {
-//   if (event.target === event.currentTarget) {
-//     closeModal();
-//   }
-// }
+function clickOverlay(event) {
+  if (event.target === event.currentTarget) {
+    closeModal();
+  }
+}
+
+// закрытие по нажатию на Escape
+
+window.addEventListener('keydown', onPressKey);
+function onPressKey(event) {
+  if (event.key === 'Escape') {
+    closeModal();
+  }
+
+  if (event.key === 'ArrowRight' || event.code === 'ArrowLeft') {
+    slider(event.key);
+  }
+}
+
+// переключение картинок влево/вправо
+
+function slider(key) {
+  let imgIndex;
+
+  const index = images.findIndex(image => image.original === refs.img.src);
+
+  if (index === -1) {
+    return;
+  }
+
+  if (key === 'ArrowRight') {
+    nextImg();
+  }
+
+  if (key === 'ArrowLeft') {
+    prevImg();
+  }
+
+  refs.img.src = images[imgIndex].original;
+
+  function nextImg() {
+    if (images.length === index + 1) {
+      imgIndex = 0;
+    } else {
+      imgIndex = index + 1;
+    }
+  }
+
+  function prevImg() {
+    if (index === 0) {
+      imgIndex = images.length - 1;
+    } else {
+      imgIndex = index - 1;
+    }
+  }
+}
