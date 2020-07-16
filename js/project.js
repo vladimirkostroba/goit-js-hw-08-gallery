@@ -46,6 +46,8 @@ function onIMGclick(event) {
     return;
   }
 
+  window.addEventListener('keydown', onPressKey);
+
   refs.modal.classList.add('is-open'); //открытие модального окна
 
   refs.img.src = event.target.dataset.source; // подмена src
@@ -72,17 +74,18 @@ function clickOverlay(event) {
 
 // закрытие по нажатию на Escape
 
-window.addEventListener('keydown', onPressKey);
+// window.addEventListener('keydown', onPressKey);
 function onPressKey(event) {
   if (event.key === 'Escape') {
     closeModal();
   }
 
-  if (event.key === 'ArrowRight' || 'ArrowLeft') {
-    slider(event.key);
-  }
-
-  if (event.key === 'ArrowDown' || 'ArrowUp') {
+  if (
+    event.key === 'ArrowRight' ||
+    event.key === 'ArrowLeft' ||
+    event.key === 'ArrowDown' ||
+    event.key === 'ArrowUp'
+  ) {
     slider(event.key);
   }
 }
@@ -98,11 +101,11 @@ function slider(key) {
     return;
   }
 
-  if (key === 'ArrowRight' || 'ArrowDown') {
+  if (key === 'ArrowRight' || key === 'ArrowDown') {
     nextImg();
   }
 
-  if (key === 'ArrowLeft' || 'ArrowUp') {
+  if (key === 'ArrowLeft' || key === 'ArrowUp') {
     prevImg();
   }
 
